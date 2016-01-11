@@ -61,8 +61,8 @@ gulp.task('clean', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch('src/**/*.jsx', ['bundle']);
-  gulp.watch('sass/**/*.scss', ['sass']);
+  gulp.watch('src/js/**/*.jsx', ['bundle']);
+  gulp.watch('src/css/**/*.scss', ['sass']);
   gulp.watch('src/**/*.html', ['html']);
 });
 
