@@ -32,6 +32,16 @@ ul {
       background-color: #000;
     }
 
+    &__details {
+      position: absolute;
+      bottom: 0;
+      background-color: #f7f7f7;
+      opacity: .75;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+
     &__icon-play {
       position: absolute;
       top: 50%;
