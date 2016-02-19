@@ -20,6 +20,11 @@ gulp.task('html', () => {
     .pipe(gulp.dest('dist'))
 });
 
+gulp.task('assets', () => {
+  return gulp.src('src/assets/{,**/}*.*')
+    .pipe(gulp.dest('dist/assets'));
+});
+
 gulp.task('bundle', () => {
   return browserify({
       entries: 'src/js/app.jsx',
@@ -66,5 +71,5 @@ gulp.task('watch', () => {
   gulp.watch('src/**/*.html', ['html']);
 });
 
-gulp.task('build', ['clean', 'bundle', 'sass', 'html']);
+gulp.task('build', ['clean', 'bundle', 'sass', 'html', 'assets']);
 gulp.task('default', ['build', 'webserver', 'watch']);

@@ -37,7 +37,7 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    return <div className="images">
+    return <div className="gallery">
       {this.state.images.map(this.renderImage)}
     </div>
   }
