@@ -59,17 +59,11 @@ gulp.task('webserver', () => {
     }));
 });
 
-gulp.task('clean', () => {
-  return del([
-    'dist/**/*'
-  ]);
-});
-
 gulp.task('watch', () => {
   gulp.watch('src/js/**/*.{jsx,js}', ['bundle']);
   gulp.watch('src/css/**/*.scss', ['sass']);
   gulp.watch('src/**/*.html', ['html']);
 });
 
-gulp.task('build', ['clean', 'bundle', 'sass', 'html', 'assets']);
+gulp.task('build', ['bundle', 'sass', 'html', 'assets']);
 gulp.task('default', ['build', 'webserver', 'watch']);
