@@ -1,27 +1,22 @@
-var React = require('react');
-var Reflux = require('reflux');
-var ImageStore = require('../stores/image-store');
-var CommentStore = require('../stores/comment-store');
-var Actions = require('../actions');
+import React from 'react';
+import Reflux from 'reflux';
 
-module.exports = React.createClass({
-  mixins: [
-    Reflux.listenTo(ImageStore, 'onChange'),
-    Reflux.listenTo(CommentStore, 'onChange')
-  ],
+import ImageStore from '../stores/image-store';
+import CommentStore from '../stores/comment-store';
+import Actions from '../actions';
 
-  getInitialState: function () {
-    return {
-      image: {},
-      comments: []
-    };
-  },
+export default class ImageDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { image: {}, comments: [] };
+    this.onChange = this.onChange.bind(this);
+  }
 
-  componentWillMount: function () {
+  componentWillMount() {
     Actions.getImageById(this.props.params.id);
-  },
+  }
 
-  renderImage: function () {
+  renderImage() {
     if (this.state.image.animated) {
       return <video preload="auto" autoPlay loop webkit-playsinline>
         <source src={this.state.image.mp4} type="video/mp4"></source>
@@ -31,9 +26,9 @@ module.exports = React.createClass({
         <img src={this.state.image.link} alt={this.state.image.title} />
       </div>
     }
-  },
+  }
 
-  renderComments: function () {
+  renderComments() {
     if (this.state.comments) {
       return this.state.comments.map(function (comment) {
         return <p key={comment.id}><strong>{comment.author}:</strong> {comment.comment}</p>
@@ -41,9 +36,9 @@ module.exports = React.createClass({
     } else {
       return <p>There are no comments</p>
     }
-  },
+  }
 
-  render: function () {
+  render() {
     return <article className="gallery__details" key={this.state.image.id}>
       <div className="panel panel-default">
         <div className="panel-heading">
@@ -62,12 +57,17 @@ module.exports = React.createClass({
         {this.renderComments()}
       </div>
     </article>
-  },
+  }
 
-  onChange: function () {
+  onChange() {
     this.setState({
       image: ImageStore.find(this.props.params.id),
       comments: CommentStore.comments
     });
   }
-});
+}
+
+ImageDetails.mixins = [
+  Reflux.listenTo(ImageStore, 'onChange'),
+  Reflux.listenTo(CommentStore, 'onChange')
+];

@@ -1,9 +1,8 @@
-var Fetch = require('whatwg-fetch');
-var ROOT_URL = require('./constants').ROOT_URL;
-var API_KEY = require('./constants').API_KEY;
+import Fetch from 'whatwg-fetch';
+import {ROOT_URL, API_KEY} from './constants';
 
-module.exports = {
-  get: function (url) {
+export default {
+  get: (url) => {
     return fetch(ROOT_URL + url, {
       headers: {
         'Authorization': 'Client-ID ' + API_KEY
