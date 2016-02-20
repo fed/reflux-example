@@ -17,6 +17,29 @@ module.exports = Reflux.createStore({
     }.bind(this));
   },
 
+  find: function (imageId) {
+    var image = _.find(this.images, { id: imageId });
+
+    if (image) {
+      return image;
+    } else {
+      return this.getImageById(imageId);
+      // return null;
+    }
+  },
+
+  getImageById: function (imageId) {
+    return Api.get('gallery/image/' + imageId).then(function (response) {
+      if (this.images) {
+        this.images.push(response.data);
+      } else {
+        this.images = [response.data];
+      }
+
+      this.triggerChange();
+    }.bind(this));
+  },
+
   triggerChange: function () {
     this.trigger('change', this.images);
   }

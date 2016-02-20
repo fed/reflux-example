@@ -1,4 +1,5 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 module.exports = React.createClass({
   getInitialState: function () {
@@ -8,14 +9,15 @@ module.exports = React.createClass({
   },
 
   render: function () {
-    return <div key={this.props.id}
+    return <Link to={'images/' + this.props.id}
+                key={this.props.id}
                 className="gallery__image"
                 onMouseEnter={this.handleOnMouseEnter}
                 onMouseLeave={this.handleOnMouseLeave}>
       {this.state.hover && this.props.animated ? this.renderVideo() : this.renderImage()}
       {!this.state.hover && this.props.animated ? this.renderPlayButton() : null}
       {this.state.hover ? this.renderDetails() : null}
-    </div>
+    </Link>
   },
 
   handleOnMouseEnter: function () {

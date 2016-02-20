@@ -2,7 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var Actions = require('../actions');
 var ImageStore = require('../stores/image-store');
-var Image = require('./image');
+var ImagePreview = require('./image-preview');
 
 module.exports = React.createClass({
 
@@ -33,7 +33,7 @@ module.exports = React.createClass({
   },
 
   renderImage: function (image) {
-    return <Image key={image.id} {...image} />
+    return <ImagePreview key={image.id} {...image} />
   },
 
   render: function () {
