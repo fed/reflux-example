@@ -1,7 +1,7 @@
 {
-  "name": "refluxjs-example",
+  "name": "reflux-example",
   "version": "0.0.0",
-  "description": "ReactJS + Reflux Example",
+  "description": "React + Reflux Example",
   "license": "MIT",
   "author": {
     "name": "Federico Knüssel",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fknussel/refluxjs-example.git"
+    "url": "https://github.com/fknussel/reflux-example.git"
   },
   "scripts": {
     "start": "./node_modules/gulp/bin/gulp.js",
