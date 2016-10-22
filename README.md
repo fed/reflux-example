@@ -2,6 +2,8 @@
 
 This is a simple sample project built with [React](https://facebook.github.io/react/), [Reflux](https://github.com/reflux/refluxjs), [Gulp](http://gulpjs.com/) and [Browserify](http://browserify.org/) to demo what Reflux is, how it works and how we can integrate it into our React apps.
 
+![App Screenshot](http://i.imgur.com/NEl6ruJ.jpg)
+
 ## API key
 
 Before building and running the app, make sure you set your Imgur API Key to the `API_KEY` constant in the `/src/js/utils/constants.js` file. You can register your app and get a key [here](https://api.imgur.com/oauth2/addclient).
