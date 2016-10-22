@@ -1,38 +1,34 @@
-var React = require('react');
-var Reflux = require('reflux');
-var Link = require('react-router').Link;
-var Actions = require('../actions');
-var TopicStore = require('../stores/topic-store');
+import React from 'react';
+import Reflux from 'reflux';
+import {Link} from 'react-router';
 
-module.exports = React.createClass({
+import Actions from '../actions';
+import TopicStore from '../stores/topic-store';
 
-  mixins: [
-    Reflux.listenTo(TopicStore, 'onChange')
-  ],
+export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { topics: [] };
+    this.onChange = this.onChange.bind(this);
+  }
 
-  getInitialState: function () {
-    return {
-      topics: []
-    }
-  },
-
-  componentWillMount: function () {
+  componentWillMount() {
     Actions.getTopics();
-  },
+  }
 
-  onChange: function (event, topics) {
+  onChange(event, topics) {
     this.setState({
       topics: topics
     });
-  },
+  }
 
-  renderTopic: function (topic) {
+  renderTopic(topic) {
     return <li key={topic.id}>
       <Link to={'topics/' + topic.id} activeClassName="active">{topic.name}</Link>
     </li>
-  },
+  }
 
-  render: function () {
+  render() {
     return <header>
       <div className="page-header">
         <h1>Imgur Browser <small>API docs <a href="https://api.imgur.com/" target="_blank">here</a></small></h1>
@@ -43,4 +39,8 @@ module.exports = React.createClass({
       </ul>
     </header>
   }
-});
+}
+
+Header.mixins = [
+  Reflux.listenTo(TopicStore, 'onChange')
+];

@@ -1,44 +1,44 @@
-var React = require('react');
-var Reflux = require('reflux');
-var Actions = require('../actions');
-var ImageStore = require('../stores/image-store');
-var ImagePreview = require('./image-preview');
+import React from 'react';
+import Reflux from 'reflux';
 
-module.exports = React.createClass({
+import Actions from '../actions';
+import ImageStore from '../stores/image-store';
+import ImagePreview from './image-preview';
 
-  mixins: [
-    Reflux.listenTo(ImageStore, 'onChange')
-  ],
+export default class Topic extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { images: [] };
+    this.onChange = this.onChange.bind(this);
+  }
 
-  getInitialState: function () {
-    return {
-      images: []
-    };
-  },
-
-  componentWillMount: function () {
+  componentWillMount() {
     Actions.getImages(this.props.params.id);
-  },
+  }
 
   // here the component doesn't get removed from the DOM
   // but instead gets a new set of properties
-  componentWillReceiveProps: function (nextProps) {
+  componentWillReceiveProps(nextProps) {
     Actions.getImages(nextProps.params.id);
-  },
+  }
 
-  onChange: function (event, images) {
+  onChange(event, images) {
     this.setState({
       images: images
     });
-  },
+  }
 
-  renderImage: function (image) {
+  renderImage(image) {
     return <ImagePreview key={image.id} {...image} />
-  },
+  }
 
-  render: function () {
+  render() {
     return <div className="gallery">
       {this.state.images.map(this.renderImage)}
     </div>
   }
-});
+}
+
+Topic.mixins = [
+  Reflux.listenTo(ImageStore, 'onChange')
+];

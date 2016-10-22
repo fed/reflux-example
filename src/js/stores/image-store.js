@@ -1,15 +1,15 @@
-var Api = require('../utils/api');
-var Reflux = require('reflux');
-var Actions = require('../actions');
-var _ = require('lodash');
+import Reflux from 'reflux';
+import reject from 'lodash/reject';
 
-module.exports = Reflux.createStore({
+import Api from '../utils/api';
+import Actions from '../actions';
 
+export default Reflux.createStore({
   listenables: [Actions],
 
   getImages: function (topicId) {
     return Api.get('topics/' + topicId).then(function (response) {
-      this.images = _.reject(response.data, function (image) {
+      this.images = reject(response.data, function (image) {
         return image.is_album;
       });
 

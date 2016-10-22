@@ -1,12 +1,11 @@
-var React = require('react');
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
+import React from 'react';
+import {Router, Route} from 'react-router';
 
-var Main = require('./components/main');
-var Topic = require('./components/topic');
-var ImageDetails = require('./components/image-details');
+import Main from './components/main';
+import Topic from './components/topic';
+import ImageDetails from './components/image-details';
 
-module.exports = (
+export default (
   <Router>
     <Route path="/" component={Main}>
       <Route path="topics/:id" component={Topic} />

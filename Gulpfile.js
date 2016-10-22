@@ -27,8 +27,8 @@ gulp.task('assets', () => {
 
 gulp.task('bundle', () => {
   return browserify({
-      entries: 'src/js/app.jsx',
-      extensions: ['.jsx'],
+      entries: 'src/js/app.js',
+      extensions: ['.jsx', '.js'],
       debug: true
     })
     .transform('babelify', { presets: ['es2015', 'react'] })

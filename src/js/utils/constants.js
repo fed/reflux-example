@@ -1,4 +1,2 @@
-module.exports = {
-  ROOT_URL: 'https://api.imgur.com/3/',
-  API_KEY: 'getyourownapikeymate'
-}
+export const ROOT_URL = 'https://api.imgur.com/3/';
+export const API_KEY = 'getyourownapikeymate';

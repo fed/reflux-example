@@ -1,8 +1,9 @@
-var Api = require('../utils/api');
-var Reflux = require('reflux');
-var Actions = require('../actions');
+import Reflux from 'reflux';
 
-module.exports = Reflux.createStore({
+import Api from '../utils/api';
+import Actions from '../actions';
+
+export default Reflux.createStore({
 
   // listen to all of our available actions:
   // for any action that gets trigger, this store

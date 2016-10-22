@@ -1,10 +1,9 @@
-var Api = require('../utils/api');
-var Reflux = require('reflux');
-var Actions = require('../actions');
-var _ = require('lodash');
+import Reflux from 'reflux';
 
-module.exports = Reflux.createStore({
+import Api from '../utils/api';
+import Actions from '../actions';
 
+export default Reflux.createStore({
   listenables: [Actions],
 
   getImageById: function (imageId) {
